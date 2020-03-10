@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Prueba.PageLogin"
+             Title="Log In">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Inicio" 
+                HorizontalOptions="Center"
+                FontSize="Title"
+               
+                FontAttributes="Bold"
+            />
+
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                <Entry Placeholder="Escriba aquí su nombre de usuario" x:Name="UserEntry" WidthRequest="200" Text="pepe@akrolis.com"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry IsPassword="true" WidthRequest="400" Placeholder="Escriba aquí su contraseña" x:Name="PassEntry" Text="Pepe@123"/>
+                    <CheckBox x:Name="ShowPassword" HorizontalOptions="End"/>
+
+                </StackLayout>
+
+                <Button x:Name="LoginButton" Text="Log In" />
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
