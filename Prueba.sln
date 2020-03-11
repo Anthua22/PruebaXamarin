@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba.Android", "Prueba\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba.iOS", "Prueba\Prueba.iOS\Prueba.iOS.csproj", "{E8533801-7684-49E0-8FBD-740741F9A641}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba", "Prueba\Prueba\Prueba.csproj", "{0AB56787-BE21-4CAB-A3A2-A74660CCB428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prueba", "Prueba\Prueba\Prueba.csproj", "{0AB56787-BE21-4CAB-A3A2-A74660CCB428}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

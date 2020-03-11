@@ -7,30 +7,7 @@
              x:Class="Prueba.App">
     
     <Application.Resources>
-        <ResourceDictionary>
-            <Color x:Key="DefaultColor">#2196F3</Color>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{DynamicResource DefaultColor}" />
-                <Setter Property="BarTextColor" Value="White" />
-                <Setter Property="BackgroundColor" Value="White" />
-            </Style>
-            <Style TargetType="Label">
-
-            </Style>
-            <Style TargetType="Button">
-                
-            </Style>
-            <Style TargetType="Picker" x:Key="DarkPicker">
-                <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="TextColor" Value="Gray"/>
-                <Setter Property="TitleColor" Value="White"/>
-            </Style>
-            <Style TargetType="Picker" x:Key="NormalPicker">
-                <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="TitleColor" Value="Black"/>
-            </Style>
-        </ResourceDictionary>
+       
        
       
     </Application.Resources>

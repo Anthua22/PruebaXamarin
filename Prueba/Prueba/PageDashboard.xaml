@@ -18,11 +18,17 @@
                      Clicked="CierreItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        
         <StackLayout>
-            <Label Text="Hola Mundo"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                     
+            <ListView x:Name="lvAppoinments">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Header}" Detail="{Binding Detail}" TextColor="{DynamicResource lvColor}" DetailColor="Gray"></TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+                               
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using System.IO;
+using Prueba.Interfaces;
 
 namespace Prueba
 {
@@ -22,25 +23,18 @@ namespace Prueba
             CheckFile();
 
         }
-
+       
         private void CheckFile()
         {
-            try
-            {
-                if (File.Exists(@"C:/Proyectos/Prueba/Prueba/datos/credentials.txt"))
-                {
-                    Navigation.PushAsync(new PageDashboard());
-                }
-                else
-                {
-
-                    Navigation.PushAsync(new PageLogin());
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+           try
+           {
+                Navigation.PushAsync(new PageLogin());
+                
+           }
+           catch(Exception e)
+           {
+                DisplayAlert("Error", "Error: " + e.Message, "Ok");
+           }
             
            
         }

@@ -1,4 +1,6 @@
 ﻿using Prueba.Entidades;
+using Prueba.Interfaces;
+using Prueba.Utilidades;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -9,76 +11,80 @@ namespace Prueba
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageSettings : ContentPage
     {
-        public ObservableCollection<Colors> Colors { get; set; }
+        public ObservableCollection<DTOColor> BackgroundColors { get; set; }
+        public ObservableCollection<DTOColor> BackgroundBar { get; set; }
         public PageSettings()
         {
             InitializeComponent();
-            Colors = new ObservableCollection<Colors> { 
-                new Colors("Amarillo", "Color amar"), 
-                new Colors("Rojo", "color roj"), 
-                new Colors("Azul", "Color azul"),
-                new Colors("Negro", "Color negro") 
+            BackgroundColors = new ObservableCollection<DTOColor> { 
+                new DTOColor("Amarillo", "Color amar"), 
+                new DTOColor("Rojo", "color roj"), 
+                new DTOColor("Azul", "Color azul"),
+                new DTOColor("Negro", "Color negro") 
             };
-            ColoresPicker.ItemsSource = Colors;
-            FondoPicker.ItemsSource = Colors;
+
+            BackgroundBar = new ObservableCollection<DTOColor>
+            {
+                new DTOColor("Amarillo", "Color amar"),
+                new DTOColor("Rojo", "color roj"),
+                new DTOColor("Azul", "Color azul"),
+                new DTOColor("Negro", "Color negro")
+            };
+            
+            ColoresPicker.ItemsSource = BackgroundBar;
+            FondoPicker.ItemsSource = BackgroundColors;
             ColoresPicker.SelectedIndexChanged += ColorsPicker_SelectedIndexChanged;
             FondoPicker.SelectedIndexChanged += FondoPicker_SelectedIndexChanged;
             DarkModeCheckBox.CheckedChanged += DarkModeCheckBox_CheckedChanged;
+            AddCheck();
+        }
+
+        private void AddCheck()
+        {
+            try
+            {
+                string mode = DependencyService.Get<IFileHelper>().CheckMode();
+                if (mode == "ON")
+                {
+                    DarkModeCheckBox.IsChecked = true;
+                }
+                else
+                {
+                    DarkModeCheckBox.IsChecked = false;
+                }
+            }catch(Exception e)
+            {
+                DisplayAlert("Error", "Error: " + e.Message, "OK");
+            }
+           
         }
 
         private void DarkModeCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        { 
-            if (DarkModeCheckBox.IsChecked)
+        {
+            try
             {
-                (App.Current.MainPage as NavigationPage).BackgroundColor = Color.Black;
-                (App.Current.MainPage as NavigationPage).BarTextColor = Color.White;
-                (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.Gray;
-                Colors.Clear();
-                Colors.Add(new Colors("Ninguno", "No hay color"));
-                ColoresPicker.ItemsSource = Colors;
-                FondoPicker.ItemsSource = Colors;
-                App.Current.Resources["Xamarin.Forms.Label"] = new Style(typeof(Label))
+                DependencyService.Get<IFileHelper>().ChangeMode(DarkModeCheckBox.IsChecked);
+                if (DarkModeCheckBox.IsChecked)
                 {
-                    Setters = {
-                        new Setter { Property = Label.TextColorProperty,   Value = Color.White }
-                    }
-
-                };
-                App.Current.Resources["Xamarin.Forms.Button"] = new Style(typeof(Button))
+                    ChangesColors.ChangeToDark();
+                }
+                else
                 {
-                    Setters =
-                    {
-                        new Setter { Property = Button.BorderColorProperty, Value = Color.White},
-                        new Setter { Property = Button.TextColorProperty, Value = Color.White}
-                   
-                    }
-                };
-                FondoPicker.Style = (Style)Application.Current.Resources["DarkPicker"];
-                ColoresPicker.Style = (Style)Application.Current.Resources["DarkPicker"];
-        
+                    ChangesColors.ChangeToDefault();
+                }
             }
-            else{
-                
-                App.Current.Resources["Xamarin.Forms.Label"] = new Style(typeof(Label))
-                {
-                    Setters = {
-                            new Setter { Property = Label.TextColorProperty,    Value = Color.Black }
-                        }
-
-                };
-
-
-                (App.Current.MainPage as NavigationPage).BackgroundColor = Color.WhiteSmoke;
-                (App.Current.MainPage as NavigationPage).BarTextColor = Color.Black;
-                FondoPicker.Style = (Style)Application.Current.Resources["NormalPicker"];
-                ColoresPicker.Style = (Style)Application.Current.Resources["NormalPicker"];
+            catch(Exception ex)
+            {
+                DisplayAlert("Error", "Error: " + ex.Message, "OK");
             }
+            
+            
         }
 
 
         private void FondoPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch ((FondoPicker.SelectedItem as Colors).Nombre)
+            switch ((FondoPicker.SelectedItem as DTOColor).Nombre)
             {
                 case "Rojo":
                     (App.Current.MainPage as NavigationPage).BackgroundColor = Color.Red;
@@ -91,7 +97,8 @@ namespace Prueba
                     break;
                 case "Negro":
                     (App.Current.MainPage as NavigationPage).BackgroundColor = Color.Black;
-
+                    break;
+                default:
                     break;
                
             }
@@ -101,7 +108,7 @@ namespace Prueba
 
         private void ColorsPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch ((ColoresPicker.SelectedItem as Colors).Nombre)
+            switch ((ColoresPicker.SelectedItem as DTOColor).Nombre)
             {
                 case "Rojo":
                     (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.Red;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Prueba.Entidades
 {
-    public class Colors:INotifyPropertyChanged
+    public class DTOColor:INotifyPropertyChanged
     {
         string _name;
 
@@ -27,7 +27,7 @@ namespace Prueba.Entidades
         string _description;
         public string Descripcion { get; set; }
 
-        public Colors(string nombre, string descripcion)
+        public DTOColor(string nombre, string descripcion)
         {
             this.Nombre = nombre;
             this.Descripcion = descripcion;

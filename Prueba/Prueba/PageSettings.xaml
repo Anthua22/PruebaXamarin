@@ -8,7 +8,7 @@
              Title="Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Picker Title="Seleccione un color para la barra superior" x:Name="ColoresPicker"  ItemDisplayBinding="{Binding Nombre}" SelectedIndex="1">
+            <Picker Title="Seleccione un color para la barra superior" x:Name="ColoresPicker"  ItemDisplayBinding="{Binding Nombre}">
                 
             </Picker>
             <Picker Title="Seleccione un color de fondo" x:Name="FondoPicker" ItemDisplayBinding="{Binding Nombre}" Margin="0,25,0,0">

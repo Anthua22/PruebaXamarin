@@ -1,12 +1,9 @@
-﻿using Prueba.Utilidades;
+﻿using Prueba.Interfaces;
+using Prueba.Utilidades;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,6 +23,8 @@ namespace Prueba
             Pass = "Pepe@123";
             LoginButton.Clicked += LoginButton_Clicked;
             ShowPassword.CheckedChanged += MostrarPassword_CheckedChanged;
+            
+           // AddCheck();
         }
         private void MostrarPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
@@ -60,29 +59,10 @@ namespace Prueba
                 {
 
                     if (Validaciones.ValidarPass(PassEntry.Text))
-                    {
-
-                        /* FileStream fichero = new FileStream(@"C:/Proyectos/Prueba/Prueba/datos/credentials.txt", FileMode.OpenOrCreate);
-                         BinaryWriter binary = new BinaryWriter(fichero, Encoding.UTF8);
-
-                         try
-                         {
-                             User = UserEntry.Text;
-                             Pass = PassEntry.Text;
-                             binary.Write(User + "\n");
-                             binary.Write(Pass + "\n");
-
-
-                         }catch(Exception ex)
-                         {
-                              DisplayAlert("Error", "Error: " + ex.Message, "OK");
-                         }
-                         finally
-                         {
-                             fichero.Close();
-                             binary.Close();
-                             Navigation.PushAsync(new PageDashboard());
-                         }*/
+                    {  
+                        DependencyService.Get<IFileHelper>().getDataStoragePath();
+                        
+                      
 
                         if (UserEntry.Text == User && PassEntry.Text == Pass)
                         {
