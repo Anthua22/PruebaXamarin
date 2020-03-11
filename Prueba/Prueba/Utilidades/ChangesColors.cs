@@ -123,8 +123,7 @@ namespace Prueba.Utilidades
             {
                 Setters =
                 {
-                    new Setter { Property = CheckBox.BackgroundColorProperty, Value = Color.Gray},
-                    new Setter { Property = CheckBox.ColorProperty, Value = Color.White}
+                    new Setter { Property = CheckBox.ColorProperty, Value = Color.Gray}
                 }
             };
             App.Current.Resources["Xamarin.Forms.Label"] = new Style(typeof(Label))
