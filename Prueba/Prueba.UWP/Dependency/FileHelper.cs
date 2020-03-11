@@ -20,10 +20,18 @@ namespace Prueba.UWP.Dependency
             {
                 file = new FileStream(GetFile(), FileMode.Create, FileAccess.ReadWrite);
                 binaryWriter = new BinaryWriter(file, Encoding.UTF8);
+                binaryWriter.Write("WindowsMode=OFF");
+                binaryWriter.Close();
+                file.Close();
+
+            }
+            else
+            {
+                file = new FileStream(GetFile(), FileMode.Create, FileAccess.ReadWrite);
+                binaryWriter = new BinaryWriter(file, Encoding.UTF8);
                 binaryWriter.Write("WindowsMode=ON");
                 binaryWriter.Close();
                 file.Close();
-               
             }
             
             return file;

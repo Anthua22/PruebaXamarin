@@ -12,15 +12,32 @@ namespace Prueba
         private bool windowsmode = false;
         private void Mode()
         {
-            string mode = DependencyService.Get<IFileHelper>().CheckMode();
-            if (mode == "ON")
+            try
             {
-                windowsmode = true;
+                if (DependencyService.Get<IFileHelper>().Exists())
+                {
+                    string mode = DependencyService.Get<IFileHelper>().CheckMode();
+                    if (mode == "ON")
+                    {
+                        windowsmode = true;
+                    }
+                    else
+                    {
+                        windowsmode = false;
+                    }
+                }
+                else
+                {
+                    DependencyService.Get<IFileHelper>().getDataStoragePath();
+                }
             }
-            else
+            catch(Exception e)
             {
-                windowsmode = false;
+                Console.WriteLine(e.Message);
             }
+           
+
+            
         }
         public App()
         { 

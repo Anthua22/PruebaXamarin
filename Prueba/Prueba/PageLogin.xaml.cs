@@ -60,10 +60,7 @@ namespace Prueba
 
                     if (Validaciones.ValidarPass(PassEntry.Text))
                     {  
-                        DependencyService.Get<IFileHelper>().getDataStoragePath();
-                        
-                      
-
+                                            
                         if (UserEntry.Text == User && PassEntry.Text == Pass)
                         {
 

@@ -176,8 +176,8 @@ namespace Prueba.Utilidades
             {
                 Setters =
                 {
-                    new Setter { Property = CheckBox.BackgroundColorProperty, Value = Color.Blue},
-                    new Setter { Property = CheckBox.ColorProperty, Value = Color.White}
+                   
+                    new Setter { Property = CheckBox.ColorProperty, Value = Color.Gray}
                 }
             };
 
