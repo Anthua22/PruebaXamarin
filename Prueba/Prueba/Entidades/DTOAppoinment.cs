@@ -9,7 +9,9 @@ namespace Prueba.Entidades
         public string Header { get; set; }
         public string Detail { get; set; }
 
-        private string address, poblation, postal_code, province;
+        private string poblation, postal_code;
+        public string address { get; set; }
+        public string province { get; set; }
         private DateTime fecha;
 
         public DTOAppoinment(string address, string poblation, string postal_code, string province, DateTime fecha)

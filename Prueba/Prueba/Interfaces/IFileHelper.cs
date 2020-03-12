@@ -13,5 +13,6 @@ namespace Prueba.Interfaces
         bool Exists();
         string CheckMode();
         void ChangeMode(bool check);
+        string GetFile();
     }
 }

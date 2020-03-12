@@ -7,8 +7,12 @@
              x:Class="Prueba.App">
     
     <Application.Resources>
-       
-       
-      
+        <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+            <On Platform="UWP" Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String" x:Key="FontForPlaftform">
+            <On Platform="UWP" Value="{StaticResource FontAwesomeSolid}" />
+        </OnPlatform>
+
     </Application.Resources>
 </Application>

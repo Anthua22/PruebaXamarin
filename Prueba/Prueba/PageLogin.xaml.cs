@@ -23,9 +23,18 @@ namespace Prueba
             Pass = "Pepe@123";
             LoginButton.Clicked += LoginButton_Clicked;
             ShowPassword.CheckedChanged += MostrarPassword_CheckedChanged;
-            
-           // AddCheck();
+           
+
         }
+
+        private void LoginButton_Focused(object sender, FocusEventArgs e)
+        {
+            Button d = sender as Button;
+            d.BackgroundColor = Color.White;
+            d.TextColor = Color.White;
+            d.BorderColor = Color.White;
+        }
+
         private void MostrarPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (ShowPassword.IsChecked)

@@ -8,16 +8,21 @@
              Title="Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Picker Title="Seleccione un color para la barra superior" x:Name="ColoresPicker"  ItemDisplayBinding="{Binding Nombre}">
-                
-            </Picker>
-            <Picker Title="Seleccione un color de fondo" x:Name="FondoPicker" ItemDisplayBinding="{Binding Nombre}" Margin="0,25,0,0">
-                
-            </Picker>
-            <StackLayout Orientation="Horizontal"  Margin="0,25,0,0">
+            <StackLayout Orientation="Horizontal"  Margin="0,0,0,25">
                 <Label Text="Modo Oscuro" VerticalTextAlignment="Center" x:Name="DarKModeLabel"></Label>
                 <CheckBox x:Name="DarkModeCheckBox"/>
             </StackLayout>
+            
+            <StackLayout x:Name="Pickers">
+                <Picker Title="Seleccione un color para la barra superior" x:Name="ColoresPicker"  ItemDisplayBinding="{Binding Nombre}">
+                
+                </Picker>
+                <Picker Title="Seleccione un color de fondo" x:Name="FondoPicker" ItemDisplayBinding="{Binding Nombre}" Margin="0,25,0,0">
+
+                </Picker>
+            </StackLayout>
+           
+           
             
         </StackLayout>
     </ContentPage.Content>

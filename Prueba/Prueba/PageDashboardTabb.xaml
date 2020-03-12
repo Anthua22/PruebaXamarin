@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Prueba.PageDashboardTabb">
+  <!--Pages can be added as references or inline-->
+    <TabbedPage.Resources>
+        <Style TargetType="ContentPage">
+            <Setter Property="BackgroundImageSource" Value=""/>
+        </Style>
+    </TabbedPage.Resources>
+    <ContentPage Title="Tab 1">
+       
+        <ContentPage.Content>
+
+            <StackLayout Spacing="0" FlowDirection="MatchParent">
+                <ListView x:Name="lvAppoinments">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Header}" Detail="{Binding Detail}" TextColor="{DynamicResource lvColor}" DetailColor="Gray"></TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                <Grid x:Name="TestGrid" Margin="0,10,0,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--<Label Text="&#xf556;" FontFamily="{StaticResource FontForPlaftform}"  Grid.Column="0" Grid.Row="0"></Label>-->
+                    <Label Text="Nombre" Grid.Column="0" Grid.Row="0"/>
+                    <Entry Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="Apellidos" Grid.Row="1" Grid.Column="0"/>
+                    <Entry Grid.Column="1" Grid.Row="1"></Entry>
+                </Grid>
+
+                <Switch></Switch>
+
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Tab 2" />
+  <ContentPage Title="Tab 3" />
+</TabbedPage>

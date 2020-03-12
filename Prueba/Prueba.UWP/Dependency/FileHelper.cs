@@ -51,9 +51,9 @@ namespace Prueba.UWP.Dependency
         }
 
 
-        private string GetFile()
+        public string GetFile()
         {
-            return ApplicationData.Current.LocalFolder.Path + @"\Hola.txt";
+            return ApplicationData.Current.LocalFolder.Path + @"\setting.db3";
         }
 
       

@@ -1,6 +1,8 @@
 ﻿using Prueba.Entidades;
 using Prueba.Interfaces;
+using Prueba.Servicio;
 using Prueba.Utilidades;
+using SQLite;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -13,6 +15,8 @@ namespace Prueba
     {
         public ObservableCollection<DTOColor> BackgroundColors { get; set; }
         public ObservableCollection<DTOColor> BackgroundBar { get; set; }
+        //private SQLiteAsyncConnection _conn;
+
         public PageSettings()
         {
             InitializeComponent();
@@ -22,7 +26,7 @@ namespace Prueba
                 new DTOColor("Azul", "Color azul"),
                 new DTOColor("Negro", "Color negro") 
             };
-
+           // _conn = DependencyService.Get<ISQLiteDB>().GetConnection();
             BackgroundBar = new ObservableCollection<DTOColor>
             {
                 new DTOColor("Amarillo", "Color amar"),
@@ -30,7 +34,6 @@ namespace Prueba
                 new DTOColor("Azul", "Color azul"),
                 new DTOColor("Negro", "Color negro")
             };
-            
             ColoresPicker.ItemsSource = BackgroundBar;
             FondoPicker.ItemsSource = BackgroundColors;
             ColoresPicker.SelectedIndexChanged += ColorsPicker_SelectedIndexChanged;
@@ -46,11 +49,12 @@ namespace Prueba
                 string mode = DependencyService.Get<IFileHelper>().CheckMode();
                 if (mode == "ON")
                 {
-                    DarkModeCheckBox.IsChecked = true;
+                    DarkModeCheckBox.IsChecked = true;                
                 }
                 else
                 {
                     DarkModeCheckBox.IsChecked = false;
+                   
                 }
             }catch(Exception e)
             {
@@ -63,15 +67,21 @@ namespace Prueba
         {
             try
             {
-                DependencyService.Get<IFileHelper>().ChangeMode(DarkModeCheckBox.IsChecked);
                 if (DarkModeCheckBox.IsChecked)
                 {
+                    Pickers.IsVisible = false;
                     ChangesColors.ChangeToDark();
+                    
                 }
                 else
                 {
+                    Pickers.IsVisible = true;
                     ChangesColors.ChangeToDefault();
+
                 }
+                DependencyService.Get<IFileHelper>().ChangeMode(DarkModeCheckBox.IsChecked);
+               // var db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetFile());
+               // DataBase.Update(db, DarkModeCheckBox.IsChecked,1);
             }
             catch(Exception ex)
             {
@@ -80,7 +90,6 @@ namespace Prueba
             
             
         }
-
 
         private void FondoPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -104,8 +113,6 @@ namespace Prueba
             }
         }
 
-
-
         private void ColorsPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch ((ColoresPicker.SelectedItem as DTOColor).Nombre)
@@ -126,6 +133,6 @@ namespace Prueba
             }
         }
 
-
+        
     }
 }

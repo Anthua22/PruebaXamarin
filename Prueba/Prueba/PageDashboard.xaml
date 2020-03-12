@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+   
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -7,6 +8,7 @@
              x:Class="Prueba.PageDashboard"
              Title="Welcome"
              >
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Settings" 
                      Clicked="ColoresItem_Clicked"
@@ -19,15 +21,20 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         
-        <StackLayout>
+        <StackLayout Spacing="0" FlowDirection="MatchParent">
             <ListView x:Name="lvAppoinments">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Header}" Detail="{Binding Detail}" TextColor="{DynamicResource lvColor}" DetailColor="Gray"></TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
 
+            </ListView>
+            <SearchBar BackgroundColor="Gray" TextColor="Black"></SearchBar>
+            <DatePicker></DatePicker>
+            <TimePicker></TimePicker>
+            <Editor BackgroundColor="Gray" TextColor="White"></Editor>
+            <Switch></Switch>
                                
         </StackLayout>
     </ContentPage.Content>

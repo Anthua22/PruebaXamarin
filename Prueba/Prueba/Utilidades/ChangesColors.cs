@@ -10,12 +10,38 @@ namespace Prueba.Utilidades
         public static void CreateStruct(bool mode)
         {
             App.Current.Resources.Add("DefaultColor", Color.FromHex("#2196F3"));
+            App.Current.Resources.Add("Dark", Color.FromHex("#2a2828"));
+            App.Current.Resources.Add("DarkModeGray", Color.Gray);
+            App.Current.Resources.Add("lvColor", Color.White);
+            
             if (mode)
-            { 
-                App.Current.Resources.Add("DarkModeGray", Color.Gray);
-                App.Current.Resources.Add("lvColor", Color.FromHex("#FFFFFF"));
+            {
+                Style TimePickerStyle = new Style(typeof(TimePicker))
+                {
+                    Setters =
+                    {
+                        new Setter { Property = TimePicker.BackgroundColorProperty, Value = Color.Gray},
+                        new Setter { Property = TimePicker.TextColorProperty, Value = Color.White}
+                    }
+                };
 
-                Style CheckBoxs = new Style(typeof(CheckBox))
+                Style DatePickerStyle = new Style(typeof(DatePicker))
+                {
+                    Setters =
+                    {
+                        new Setter { Property = DatePicker.BackgroundColorProperty, Value = Color.Gray},
+                        new Setter { Property = DatePicker.TextColorProperty, Value = Color.Black}
+                    }
+                };
+                Style SwitchStyle = new Style(typeof(Switch))
+                {
+                    Setters =
+                    {
+                        new Setter{ Property = Switch.BackgroundColorProperty, Value = Color.White},
+                        new Setter { Property = Switch.OnColorProperty, Value = Color.Gray}
+                    }
+                };
+                Style CheckBoxStyle= new Style(typeof(CheckBox))
                 {
                     Setters =
                     {
@@ -38,7 +64,7 @@ namespace Prueba.Utilidades
                     {
                         new Setter { Property = NavigationPage.BarBackgroundColorProperty, Value=Color.Gray},
                         new Setter { Property = NavigationPage.BarTextColorProperty, Value = Color.White},
-                        new Setter { Property = NavigationPage.BackgroundColorProperty, Value=Color.Black}
+                        new Setter { Property = NavigationPage.BackgroundColorProperty, Value=App.Current.Resources["Dark"]}
                     }
                 };    
                 
@@ -53,11 +79,13 @@ namespace Prueba.Utilidades
                 {
                     Setters =
                     {
-                        new Setter { Property = Button.BorderColorProperty, Value = Color.White},
+                        new Setter { Property = Button.BorderColorProperty, Value = Color.Black},
                         new Setter { Property = Button.BackgroundColorProperty, Value = Color.DarkGray},
-                        new Setter { Property = Button.TextColorProperty, Value = Color.White}
+                        new Setter { Property = Button.TextColorProperty, Value = Color.Black}
                     }
+                    
                 };
+               
 
                 Style entries = new Style(typeof(Entry))
                 {
@@ -66,18 +94,19 @@ namespace Prueba.Utilidades
                           new Setter { Property = Entry.BackgroundColorProperty, Value=App.Current.Resources["DarkModeGray"]}
                     }
                 };
-                App.Current.Resources.Add(Navigation);    
+                App.Current.Resources.Add(Navigation);
                 App.Current.Resources.Add(labels);
                 App.Current.Resources.Add(buttons);
                 App.Current.Resources.Add(entries);
                 App.Current.Resources.Add(DarkPicker);
-                App.Current.Resources.Add(CheckBoxs);
-
+                App.Current.Resources.Add(CheckBoxStyle);
+                App.Current.Resources.Add(SwitchStyle);
+                App.Current.Resources.Add(TimePickerStyle);
+                App.Current.Resources.Add(DatePickerStyle);
             }
             else
             {
-                App.Current.Resources.Add("DarkModeGray", Color.Gray);
-                App.Current.Resources.Add("lvColor", Color.White);
+               
                 Style Navigation = new Style(typeof(NavigationPage))
                 {
                     Setters =
@@ -86,6 +115,17 @@ namespace Prueba.Utilidades
                         new Setter { Property = NavigationPage.BarTextColorProperty, Value = Color.White},
                         new Setter { Property = NavigationPage.BackgroundColorProperty, Value=Color.White}
                     }
+                };
+
+                Style buttons = new Style(typeof(Button))
+                {
+                    Setters =
+                    {
+                        new Setter { Property = Button.BorderColorProperty, Value = Color.Black},
+                        new Setter { Property = Button.BackgroundColorProperty, Value = Color.White},
+                        new Setter { Property = Button.TextColorProperty, Value = Color.Black}
+                    }
+
                 };
                 Style NormalPicker = new Style(typeof(Picker))
                 {
@@ -97,7 +137,8 @@ namespace Prueba.Utilidades
                     }
                 };
                 App.Current.Resources.Add(Navigation);
-                App.Current.Resources.Add(NormalPicker);  
+                App.Current.Resources.Add(NormalPicker);
+                App.Current.Resources.Add(buttons);
                 App.Current.Resources["lvColor"] = Color.Black;
             }
           
@@ -105,7 +146,7 @@ namespace Prueba.Utilidades
         }
         public static void ChangeToDark()
         {
-            (App.Current.MainPage as NavigationPage).BackgroundColor = Color.Black;
+            (App.Current.MainPage as NavigationPage).BackgroundColor = (Color)App.Current.Resources["Dark"];
             (App.Current.MainPage as NavigationPage).BarTextColor = Color.White;
             (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.Gray;
 
@@ -138,9 +179,9 @@ namespace Prueba.Utilidades
             {
                 Setters =
                 {
-                    new Setter { Property = Button.BorderColorProperty, Value = Color.White},
+                    new Setter { Property = Button.BorderColorProperty, Value = Color.Black},
                     new Setter { Property = Button.BackgroundColorProperty, Value = Color.DarkGray},
-                    new Setter { Property = Button.TextColorProperty, Value = Color.White}
+                    new Setter { Property = Button.TextColorProperty, Value = Color.Black}
 
                 }
             };
@@ -177,7 +218,7 @@ namespace Prueba.Utilidades
                 Setters =
                 {
                    
-                    new Setter { Property = CheckBox.ColorProperty, Value = Color.Gray}
+                    new Setter { Property = CheckBox.ColorProperty, Value = Color.Blue}
                 }
             };
 

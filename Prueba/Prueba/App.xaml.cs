@@ -1,8 +1,10 @@
 ﻿using Prueba.Interfaces;
+using Prueba.Servicio;
 using Prueba.Utilidades;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SQLite;
 
 namespace Prueba
 {
@@ -10,6 +12,25 @@ namespace Prueba
     {
         //Si es false es modo claro y si es true modo oscuro
         private bool windowsmode = false;
+        //private SQLiteAsyncConnection _conn; 
+     
+        public App()
+        { 
+            Mode();
+            ChangesColors.CreateStruct(windowsmode);
+            InitializeComponent();
+           // _conn = DependencyService.Get<ISQLiteDB>().GetConnection();
+            MainPage = new NavigationPage(new MainPage());
+        }
+        
+      /*  private void Check()
+        {
+            if (!DependencyService.Get<IFileHelper>().Exists())
+            {
+                _conn.InsertAsync(true);
+            }
+        }*/
+
         private void Mode()
         {
             try
@@ -24,6 +45,7 @@ namespace Prueba
                     else
                     {
                         windowsmode = false;
+                        //_conn.InsertAsync(windowsmode);
                     }
                 }
                 else
@@ -31,20 +53,11 @@ namespace Prueba
                     DependencyService.Get<IFileHelper>().getDataStoragePath();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-           
 
-            
-        }
-        public App()
-        { 
-            Mode();
-            ChangesColors.CreateStruct(windowsmode);
-            InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
